@@ -1,9 +1,7 @@
-package org.mdkt.compiler;
+package com.tifires.genesis.packager.compile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.tools.FileObject;

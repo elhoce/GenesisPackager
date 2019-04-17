@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.mdkt.compiler</groupId>
-    <artifactId>InMemoryJavaCompiler</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <groupId>com.tifires.genesis.packager</groupId>
+    <artifactId>GenesisPackager</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <url>https://github.com/trung/InMemoryJavaCompiler</url>
+    <url>https://github.com/elhoce/GenesisPackager</url>
 
-    <name>InMemoryJavaCompiler</name>
-    <description>Small utility to compile java code in memory</description>
+    <name>GenesisPackager</name>
+    <description>Small utility to compile java code in memory or package in jar file !</description>
 
     <properties>
     	<maven.compiler.source>1.8</maven.compiler.source>
@@ -18,7 +18,6 @@
         <nexus-staging-maven-plugin.version>1.6.3</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
         <gpg.executable>gpg2</gpg.executable>
-
         <!-- dependencies -->
         <slf4j.version>1.7.5</slf4j.version>
         <junit.version>4.12</junit.version>
@@ -33,14 +32,14 @@
     </licenses>
 
     <issueManagement>
-        <url>https://github.com/trung/InMemoryJavaCompiler/issues</url>
+        <url>https://github.com/elhoce/GenesisPackager/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <scm>
-        <url>https://github.com/trung/InMemoryJavaCompiler</url>
-        <connection>scm:git:git://github.com/trung/InMemoryJavaCompiler</connection>
-        <developerConnection>scm:git:git@github.com:trung/InMemoryJavaCompiler.git</developerConnection>
+        <url>https://github.com/elhoce/GenesisPackager</url>
+        <connection>scm:git:git://github.com/elhoce/GenesisPackager</connection>
+        <developerConnection>scm:git:git@github.com:elhoce/GenesisPackager.git</developerConnection>
       <tag>HEAD</tag>
   	</scm>
 
@@ -57,10 +56,10 @@
 
     <developers>
         <developer>
-            <name>Trung Nguyen</name>
-            <email>trung.n.k@gmail.com</email>
+            <name>Hocine AMROUCHE</name>
+            <email>saeba@tifires.com</email>
             <organization>Github</organization>
-            <organizationUrl>https://github.com/trung</organizationUrl>
+            <organizationUrl>https://github.com/elhoce</organizationUrl>
         </developer>
     </developers>
 
@@ -127,56 +126,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <additionalparam>-Xdoclint:none</additionalparam>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

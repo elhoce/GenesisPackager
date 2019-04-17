@@ -1,4 +1,4 @@
-package org.mdkt.compiler;
+package com.tifires.genesis.packager.commons;
 
 import javax.tools.SimpleJavaFileObject;
 import java.io.IOException;

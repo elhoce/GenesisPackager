@@ -1,4 +1,4 @@
-package org.mdkt.compiler;
+package com.tifires.genesis.packager.compile;
 
 import java.util.HashMap;
 import java.util.Map;

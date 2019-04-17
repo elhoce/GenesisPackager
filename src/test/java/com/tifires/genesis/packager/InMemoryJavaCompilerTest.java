@@ -1,8 +1,10 @@
-package org.mdkt.compiler;
+package com.tifires.genesis.packager;
 
 import java.util.List;
 import java.util.Map;
 
+import com.tifires.genesis.packager.compile.CompilationException;
+import com.tifires.genesis.packager.compile.InMemoryJavaCompiler;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
