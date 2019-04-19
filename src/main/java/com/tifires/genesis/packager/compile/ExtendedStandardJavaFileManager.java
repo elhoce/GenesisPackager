@@ -1,5 +1,7 @@
 package com.tifires.genesis.packager.compile;
 
+import com.tifires.genesis.packager.commons.CompiledCode;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

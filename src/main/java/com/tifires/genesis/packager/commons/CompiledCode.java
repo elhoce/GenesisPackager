@@ -1,4 +1,4 @@
-package com.tifires.genesis.packager.compile;
+package com.tifires.genesis.packager.commons;
 
 import javax.tools.SimpleJavaFileObject;
 import java.io.ByteArrayOutputStream;
