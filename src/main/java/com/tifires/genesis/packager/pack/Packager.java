@@ -4,6 +4,7 @@ import com.tifires.genesis.packager.commons.CompiledCode;
 import com.tifires.genesis.packager.commons.Resource;
 import com.tifires.genesis.packager.commons.SourceCode;
 import com.tifires.genesis.packager.compile.Compiler;
+import com.tifires.genesis.packager.gradle.Gradler;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ import java.util.jar.Manifest;
 
 public class Packager {
     private final static Logger LOG = LoggerFactory.getLogger(Packager.class);
-    private Path jarlocation;
+    private Path pjLoc;
     private Path name;
     private Compiler compiler;
     private Map<String, Set<Resource>> mResources = new HashMap<>();
@@ -39,8 +40,7 @@ public class Packager {
 
     public Packager() {
         try {
-            jarlocation = Files.createTempDirectory("genesis");
-            name = Files.createTempFile(jarlocation, "pack", ".jar");
+            pjLoc = Files.createTempDirectory("genesis");
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -53,11 +53,11 @@ public class Packager {
 
     public Packager setLocation(Path location, String filename) {
         if (location != null)
-            jarlocation = location;
+            pjLoc = location;
         if (!filename.endsWith(".jar"))
             filename = filename.concat(".jar");
         try {
-            name = Files.createFile(Paths.get(jarlocation.toString(), filename));
+            name = Files.createFile(Paths.get(pjLoc.toString(), filename));
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
@@ -90,8 +90,22 @@ public class Packager {
         return this;
     }
 
-    public Packager pack(boolean withSources) {
+    public Packager pack(boolean withSources, boolean useGradle) {
+        return useGradle ? this.packWithGradle(withSources) : this.packInMemory(withSources);
+    }
 
+    private Packager packWithGradle(boolean withSources) {
+        Gradler gradler = Gradler.newInstance();
+        gradler.setLocation(pjLoc);
+        gradler.init();
+        mResources.forEach(gradler::pushResources);
+        compiler.getSources().forEach(gradler::pushSource);
+        gradler.pack();
+        name = Paths.get(pjLoc.toString(),"build","libs",pjLoc.getFileName().toString().concat(".jar"));
+        return this;
+    }
+
+    private Packager packInMemory(boolean withSources) {
         //prepare Manifest file
         Manifest manifest = new Manifest();
         Attributes global = manifest.getMainAttributes();
@@ -100,6 +114,7 @@ public class Packager {
 
         //create required jar name
         try {
+            name = Files.createTempFile(pjLoc, "pack", ".jar");
             File jarFile = name.toFile();
             OutputStream os = new FileOutputStream(jarFile);
             jos = new JarOutputStream(os, manifest);

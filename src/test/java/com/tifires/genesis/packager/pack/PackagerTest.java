@@ -14,7 +14,7 @@ public class PackagerTest {
     @Test
     public void pack_classOnly() {
         String src = genMockJavaSrc();
-        Packager packager = Packager.newInstance().addSource("com.tifires.HelloClass", src).pack(false);
+        Packager packager = Packager.newInstance().addSource("com.tifires.HelloClass", src).pack(false,false);
         LOG.info(packager.getLocation().toString());
     }
 
@@ -25,7 +25,7 @@ public class PackagerTest {
         Resource resource2 = new Resource("res2.json", new TestResource("res2", 2));
 
         Packager packager = Packager.newInstance().addSource("com.tifires.HelloClass", src)
-                .addResources("desc", resource1, resource2).pack(false);
+                .addResources("desc", resource1, resource2).pack(false,false);
         LOG.info(packager.getLocation().toString());
     }
 

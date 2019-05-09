@@ -142,6 +142,10 @@ public class Compiler {
         return compiledCodes.keySet().stream().collect(Collectors.toMap(sourceCodes::get, compiledCodes::get));
     }
 
+    public List<SourceCode> getSources() {
+        return new ArrayList<>(sourceCodes.values());
+    }
+
     public Class<?> getClassForSrc(CompiledCode resource) throws ClassNotFoundException {
         Objects.requireNonNull(resource);
         return classLoader.loadClass(resource.getClassName());
