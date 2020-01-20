@@ -1,15 +1,9 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "io.ebean:ebean-gradle-plugin:11.34.1"
-    }
+plugins {
+    id "io.ebean" version "12.1.8"
+    id 'java'
+    id 'idea'
+    id 'maven-publish'
 }
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'io.ebean'
 
 group = 'com.tifires'
 sourceCompatibility = 8
@@ -25,6 +19,6 @@ ebean {
 }
 
 dependencies {
-    compile 'com.tifires.genesis:core:0.1'
-    compile 'io.ebean:ebean:11.36.2'
+    compile 'com.tifires.genesis:core:0.3'
+    compile 'io.ebean:ebean:12.1.8'
 }

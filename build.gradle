@@ -11,13 +11,16 @@ plugins {
 repositories {
     mavenLocal()
     jcenter()
+    maven {
+        url "https://repo.gradle.org/gradle/libs-releases-local/"
+    }
     mavenCentral()
 }
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.2'
-    compile group: 'org.gradle', name: 'gradle-tooling-api', version: '4.3'
+    compile group: 'org.gradle', name: 'gradle-tooling-api', version: '6.0.1'
     compile 'org.jtwig:jtwig-core:5.87.0.RELEASE'
     testCompile 'org.slf4j:slf4j-jdk14:1.7.5'
     testCompile 'junit:junit:4.12'
