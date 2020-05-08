@@ -2,13 +2,19 @@ package com.tifires.genesis.packager.commons;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Properties;
 
 public class Resource {
     private String filename;
     private byte[] content;
+
+    public Resource(String filename) {
+        this.filename = filename;
+    }
 
     public Resource(String filename, Serializable serializable) throws IOException {
         this.filename = Objects.requireNonNull(filename);
@@ -39,5 +45,11 @@ public class Resource {
 
     public void setContent(Serializable serializable) throws IOException {
         content = new ObjectMapper().writeValueAsBytes(Objects.requireNonNull(serializable));
+    }
+
+    public void setPropertiesContent(Properties properties) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        properties.store(bos, filename);
+        this.content = bos.toByteArray();
     }
 }
