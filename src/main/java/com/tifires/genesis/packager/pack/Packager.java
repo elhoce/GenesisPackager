@@ -1,11 +1,11 @@
 package com.tifires.genesis.packager.pack;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tifires.genesis.packager.commons.CompiledCode;
 import com.tifires.genesis.packager.commons.Resource;
 import com.tifires.genesis.packager.commons.SourceCode;
 import com.tifires.genesis.packager.compile.Compiler;
 import com.tifires.genesis.packager.gradle.Gradler;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
